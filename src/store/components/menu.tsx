@@ -13,25 +13,25 @@ export default function Menu({isVisible, onClose}) {
             onPress={onClose}
           >
             <View className="flex-1 justify-center items-center">
-              <View className="bg-white w-3/4 rounded-3xl shadow-lg p-5">
-                <Text className="text-blue-500 font-bold text-center mb-5">
+              <Pressable className="bg-white w-3/4 rounded-3xl shadow-lg py-8 px-7">
+                <Text className="text-blue-500 font-bold text-center">
                   something@gmail.com
                 </Text>
-                <View className="h-px bg-gray-300 mb-3"></View>
+                <View className="h-px bg-gray-300 my-5"></View>
 
-                <TouchableOpacity className="mb-3">
+                <TouchableOpacity className="">
                   <Text className="text-center text-black font-semibold">
                     List Schedules
                   </Text>
                 </TouchableOpacity>
-                <View className="h-px bg-gray-300 mb-3"></View>
+                <View className="h-px bg-gray-300 my-5"></View>
 
                 <TouchableOpacity>
                   <Text className="text-center text-black font-semibold">
                     Saved Emails
                   </Text>
                 </TouchableOpacity>
-              </View>
+              </Pressable>
             </View>
           </Pressable>
         </Modal>

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package email.v1;
+option go_package = "github.com/isantoshgyawali/sendit/proto/gen/email/v1;emailV1";
+
+message EmailRequest {
+    string email = 1; // allows multiple recipients
+    string title = 2;
+    string content = 3;
+    optional bool repeat = 4;
+    optional string schedule = 5;
+}
+
+message EmailResponse {
+    string status = 1;
+    string message = 2;
+}
+
+message CancelScheduleRequest {
+    string schedule_id = 1;
+}
+
+message CancelScheduleResponse {
+    string status = 1;
+    string message = 2;
+}
+
+service EmailService{
+    rpc Email(EmailRequest) returns (EmailResponse);
+    rpc CancelSchedule(CancelScheduleRequest) returns (CancelScheduleResponse);
+}
