@@ -3,3 +3,4 @@
 ---
 > 2. Gmail doesn't allow to directly send message using "username" and "password"
 > <br>so, Create App passwords and enable 2-Factor before doing that
+> <br>[]
