@@ -23,6 +23,9 @@ dependencies:
   expo-splash-screen:
     specifier: ~0.29.13
     version: 0.29.21(expo@52.0.31)
+  expo-sqlite:
+    specifier: ~15.1.2
+    version: 15.1.2(expo@52.0.31)(react-native@0.76.6)(react@18.3.1)
   expo-status-bar:
     specifier: ~2.0.0
     version: 2.0.1(react-native@0.76.6)(react@18.3.1)
@@ -53,6 +56,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.4.0
     version: 3.4.17
+  zustand:
+    specifier: ^5.0.3
+    version: 5.0.3(@types/react@18.3.18)(react@18.3.1)
 
 devDependencies:
   '@babel/core':
@@ -4074,6 +4080,18 @@ packages:
       - supports-color
     dev: false
 
+  /expo-sqlite@15.1.2(expo@52.0.31)(react-native@0.76.6)(react@18.3.1):
+    resolution: {integrity: sha512-xe+v56ts6GWJoNXLpWBQJmIPd7K1Bk9tmWc2b0nV5yUjqXZX3lbTYm8QhXEqUJxYu87o2GSkNqAqNKeDbMUXGQ==}
+    peerDependencies:
+      expo: '*'
+      react: '*'
+      react-native: '*'
+    dependencies:
+      expo: 52.0.31(@babel/core@7.26.7)(@babel/preset-env@7.26.7)(react-native@0.76.6)(react@18.3.1)
+      react: 18.3.1
+      react-native: 0.76.6(@babel/core@7.26.7)(@babel/preset-env@7.26.7)(@types/react@18.3.18)(react@18.3.1)
+    dev: false
+
   /expo-status-bar@2.0.1(react-native@0.76.6)(react@18.3.1):
     resolution: {integrity: sha512-AkIPX7jWHRPp83UBZ1iXtVvyr0g+DgBVvIXTtlmPtmUsm8Vq9Bb5IGj86PW8osuFlgoTVAg7HI/+Ok7yEYwiRg==}
     peerDependencies:
@@ -7742,4 +7760,26 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  /zustand@5.0.3(@types/react@18.3.18)(react@18.3.1):
+    resolution: {integrity: sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.18
+      react: 18.3.1
     dev: false

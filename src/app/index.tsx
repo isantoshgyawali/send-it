@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Pressable, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
-import {Feather} from "@expo/vector-icons"
+import { useState } from "react";
 import { router } from "expo-router";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Menu from "@/store/components/menu";
+import {Feather} from "@expo/vector-icons"
+import { TemplateProps } from "@/store/zustandStore";
 
 export default function Page() {
+    const [templates, setTemplates] = useState<TemplateProps>()
     const [isVisible, setVisible] = useState<boolean>(false)
     const [email, setEmail] = useState<string>()
     const [name, setName] = useState<string>()

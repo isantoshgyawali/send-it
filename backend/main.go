@@ -1,21 +1,21 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"log"
-	"net/http"
-	"net/smtp"
-	"os"
-	"time"
+    "context"
+    "fmt"
+    "log"
+    "net/http"
+    "net/smtp"
+    "os"
+    "time"
 
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
+    "golang.org/x/net/http2"
+    "golang.org/x/net/http2/h2c"
 
-	"connectrpc.com/connect"
-	emailV1 "github.com/isantoshgyawali/sendit/proto/gen/email/v1"
-	"github.com/isantoshgyawali/sendit/proto/gen/email/v1/emailV1connect"
-	"github.com/joho/godotenv"
+    "connectrpc.com/connect"
+    emailV1 "github.com/isantoshgyawali/sendit/proto/gen/email/v1"
+    "github.com/isantoshgyawali/sendit/proto/gen/email/v1/emailV1connect"
+    "github.com/joho/godotenv"
 )
 
 // Tracking the scheduled tasks
@@ -61,7 +61,8 @@ func (e *EmailServiceServer) Email(
     schedule := req.Msg.Schedule
     repeat := req.Msg.Repeat
     if (schedule != nil && repeat != nil) {
-        if schduleID, err := e.ScheduleMail(to, *schedule, *repeat); err != nil {
+        schduleID, err := e.ScheduleMail(to, *schedule, *repeat)
+        if err != nil {
             return connect.NewResponse(&emailV1.EmailResponse{
                 Status: "error",
                 Message: "Error while scheduling mail:\n" + err.Error(),
