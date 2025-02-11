@@ -10,10 +10,20 @@ export type TemplateProps = {
     body: string
 }
 
+export type EmailProps = {
+    id: number
+    email: string
+    name: string
+    description: string
+}
+
 interface BearState {
     userData: UserProps | undefined
     setUserData: (item: UserProps) => void
     templates: TemplateProps[] | undefined
+    setTemplates: (item: TemplateProps[]) => void
+    emails: EmailProps[] | undefined
+    setEmails: (item: EmailProps[]) => void
 }
 
 export const useBearStore = create<BearState>((set) => ({
@@ -21,5 +31,8 @@ export const useBearStore = create<BearState>((set) => ({
     setUserData: (item : UserProps) => set({userData: item}),
 
     templates: undefined,
-    setTemplate: (item: TemplateProps[]) => set({templates: item})
+    setTemplates: (item: TemplateProps[]) => set({templates: item}),
+
+    emails: undefined,
+    setEmails: (item: EmailProps[]) => set({emails: item})
 }))

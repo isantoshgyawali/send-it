@@ -1,31 +1,69 @@
+import { GetDatabase } from "."
 import { TemplateProps } from "../zustandStore"
-import * as SQLite from "expo-sqlite"
 
-const db = await SQLite.openDatabaseAsync("send_it.db")
 export const Templates = {
-    getAllTemplates() : (TemplateProps[]) {
-        const stmt = db.prepareSync('')
-        stmt.executeSync()
-        stmt.finalizeSync()
-        return []
-    },
+    async getAllTemplates() : Promise<{data : TemplateProps[] | null; error: unknown}> {
+        try {
+            const db = await GetDatabase()
+            const stmt = await db.prepareAsync('SELECT * FROM Templates;')
+            const result = await stmt.executeAsync()
+            await stmt.finalizeAsync()
 
-    addTemplate() : string {
-        const stmt = db.prepareSync('')
-        stmt.executeSync()
-        stmt.finalizeSync()
-        return ""
-    },
-
-    editTemplate(templateId : string) : TemplateProps {
-        const stmt = db.prepareSync('')
-        stmt.executeSync()
-        stmt.finalizeSync()
-        let template : TemplateProps = {
-            id: 1,
-            subject: "",
-            body: ""
+            const templates = await result.getAllAsync() as TemplateProps[]
+            return {
+                data: templates,
+                error: null
+            }
+        } catch (err) {
+            console.log("Error Creating User:\n", err)
+            return {
+                data: null,
+                error: err,
+            }
         }
-        return template
+    },
+
+    async addTemplate(subject:string, body:string): Promise<{success: boolean; error: unknown}> {
+        try {
+            const db = await GetDatabase()
+            const stmt = await db.prepareAsync('INSERT INTO Templates (subject, body) VALUES (?, ?);')
+            await stmt.executeAsync([subject, body])
+            await stmt.finalizeAsync()
+            console.log("Template Created Successfully")
+            return {
+                success: true,
+                error: null,
+            }
+        } catch (err) {
+            console.log("Error Creating User: \n", err)
+            return {
+                success: false,
+                error: err,
+            }
+        }
+    },
+
+    async editTemplate(templateId : string, subject: string, body: string): Promise<{data: TemplateProps | null; error: unknown}> {
+        try {
+            const db = await GetDatabase()
+            const stmt = await db.prepareAsync(
+                'UPDATE Templates SET subject = ?, body = ? WHERE id = ? RETURNING *'
+            );
+            const result = await stmt.executeAsync([subject, body, templateId])
+            const template = await result.getFirstAsync() as TemplateProps
+            await stmt.finalizeAsync()
+
+            console.log("User Updated Successfully")
+            return {
+                data: template,
+                error: null,
+            }
+        } catch (err) {
+            console.log("Error Creating User: \n", err)
+            return {
+                data: null,
+                error: err,
+            }
+        }
     }
 }
