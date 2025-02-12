@@ -1,7 +1,7 @@
 import { GetDatabase } from "."
 import { TemplateProps } from "../zustandStore"
 
-export const Templates = {
+export const TemplateDbOperations = {
     async getAllTemplates() : Promise<{data : TemplateProps[] | null; error: unknown}> {
         try {
             const db = await GetDatabase()

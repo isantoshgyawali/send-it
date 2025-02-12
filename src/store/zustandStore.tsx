@@ -1,6 +1,7 @@
 import { create } from "zustand"
 
 export type UserProps = {
+    id: number,
     email: string,
 }
 
@@ -18,21 +19,21 @@ export type EmailProps = {
 }
 
 interface BearState {
-    userData: UserProps | undefined
+    userData: UserProps | null
     setUserData: (item: UserProps) => void
-    templates: TemplateProps[] | undefined
+    templates: TemplateProps[] | null
     setTemplates: (item: TemplateProps[]) => void
-    emails: EmailProps[] | undefined
+    emails: EmailProps[] | null
     setEmails: (item: EmailProps[]) => void
 }
 
 export const useBearStore = create<BearState>((set) => ({
-    userData: undefined,
+    userData: null,
     setUserData: (item : UserProps) => set({userData: item}),
 
-    templates: undefined,
+    templates: null,
     setTemplates: (item: TemplateProps[]) => set({templates: item}),
 
-    emails: undefined,
+    emails: null,
     setEmails: (item: EmailProps[]) => set({emails: item})
 }))

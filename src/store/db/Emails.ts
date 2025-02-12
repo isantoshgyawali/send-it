@@ -48,7 +48,7 @@ export const Emails = {
         try {
             const db = await GetDatabase()
             const stmt = await db.prepareAsync(
-                'UPDATE Templates SET email = ?, name = ? WHERE email = ? RETURNING *'
+                'UPDATE Emails SET email = ?, name = ? WHERE email = ? RETURNING *'
             );
             const result = await stmt.executeAsync([email, name, description])
             const data = await result.getFirstAsync() as EmailProps
